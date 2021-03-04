@@ -1,0 +1,16 @@
+{
+    "name": "hasinur/qrcode",
+    "description": "Display qrcode under the post",
+    "authors": [
+        {
+            "name": "Hasinur Rahman",
+            "email": "hasinurrahman3@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "PQRC\\" : "includes/"
+        }
+    }
+}
