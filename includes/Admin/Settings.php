@@ -29,17 +29,19 @@ class Settings {
         add_settings_field( 
             'pqrc_width', 
             __( 'QR Code Width', 'post-to-qrcode' ), 
-            [ $this, 'add_width' ],
+            [ $this, 'display_field' ],
             'general',
-            'pqrc_section'  
+            'pqrc_section',
+            ['pqrc_width']  
         );
 
         add_settings_field(
             'pqrc_height',
             __( 'QR Code Height', 'post-to-qrcde' ),
-            [ $this, 'add_heitght' ],
+            [ $this, 'display_field' ],
             'general',
-            'pqrc_section'
+            'pqrc_section',
+            ['pqrc_height']
         );
 
         register_setting( 'general', 'pqrc_width', [ 'sanitize_callback' => 'esc_attr' ] );
@@ -56,23 +58,12 @@ class Settings {
     }
 
     /**
-     * Width field
+     * Display field
      *
      * @return void
      */
-    public function add_width() {
-        $width = get_option('pqrc_width');
-        printf( '<input type="text" name="pqrc_width" id="pqrc_width" class="regular-text" value="%s"/>', $width );
+    public function display_field( $args ) {
+        $option = get_option( $args[0] );
+        printf( '<input type="text" name="%s" id="%s" class="regular-text" value="%s"/>', $option, $option, $option );
     }
-
-    /**
-     * Height field
-     *
-     * @return void
-     */
-    public function add_heitght() {
-        $height = get_option('pqrc_height');
-        printf( '<input type="text" name="pqrc_height" id="pqrc_height" class="regular-text" value="%s"/>', $height );
-    }
-
 }
